@@ -55,8 +55,9 @@ export default class TaroNormalModulesPlugin {
                 const nameNode = (callee.expressions || [])[1]
                 const { object, property } = nameNode || {}
                 if (
-                  !(object && object.name === 'jsx_runtime_1' &&
-                  property && property.name === 'jsx')
+                  object?.name !== 'jsx_runtime_1' ||
+                  (property?.name !== 'jsx' &&
+                  property?.name !== 'jsxs')
                 ) {
                   return
                 }
